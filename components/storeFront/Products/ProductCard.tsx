@@ -21,7 +21,8 @@ import {
   FaWhatsapp,
   FaXTwitter,
 } from "react-icons/fa6";
-import { IoCopyOutline ,IoShareSocialOutline} from "react-icons/io5";
+import { IoCopyOutline, IoShareSocialOutline } from "react-icons/io5";
+import {TbShare3} from "react-icons/tb"
 import { MdReport } from "react-icons/md";
 import Button from "@/components/button/Button";
 import Link from "next/link";
@@ -78,18 +79,16 @@ const ProductCard = ({ big = false, data, store }: any) => {
 
   return (
     <Card
-      className={`${
-        big ? "min-w-[250px]" : "min-w-[150px]"
-      } w-full border border-gray-100 rounded-t-md ${
-        big ? "min-h-[260px]" : "min-h-[220px]"
-      } product-card flex flex-col`} /* Added product-card class */
+      className={`${big ? "min-w-[250px]" : "min-w-[150px]"
+        } w-full border border-gray-100 rounded-t-md ${big ? "min-h-[260px]" : "min-h-[220px]"
+        } product-card flex flex-col`}
     >
       <CardHeader className="p-0">
         <div className="relative">
           <button className="absolute z-20 right-0 p-1 h-7 rounded-full">
             <Drawer>
               <DrawerTrigger asChild>
-                <IoShareSocialOutline size={17}/>
+                <TbShare3 size={17} />
               </DrawerTrigger>
               <DrawerContent className="lg:w-[60%] md:w-[70%] w-full bg-white">
                 <div className="w-full">
@@ -133,19 +132,19 @@ const ProductCard = ({ big = false, data, store }: any) => {
       </CardHeader>
       <div className="bg-white rounded-t-lg shadow-lg overflow-hidden flex flex-col product-card-content">
         <div className="flex justify-center w-full bg-gray-100 rounded-b-md">
-          <Image
-            src={data?.image}
-            alt="Placeholder"
-            className="w-full "
-            width={220}
-            height={200}
-            sizes="(max-width: 1024px) 200px, 220px"
-            priority
-          />
+          <div className="relative w-full pb-[100%]"> {/* Creates a square container */}
+            <Image
+              src={data?.image}
+              alt={data?.name || 'Product Image'}
+              layout="fill" // Ensures the image covers the container
+              objectFit="cover" // Ensures the image fits the container
+              className="absolute inset-0 w-full h-full" // Covers the container fully
+            />
+          </div>
         </div>
         <div className="py-1 px-2 flex-1 flex flex-col justify-between">
           <h2 className="text-[15px] font-semibold text-gray-700">{data?.name}</h2>
-          <p className="text-gray-600 truncate-text text-[13px]  product-description">
+          <p className="text-gray-600 truncate-text text-[13px] product-description">
             {" "}
             {data?.description}
           </p>
@@ -155,11 +154,12 @@ const ProductCard = ({ big = false, data, store }: any) => {
           </p>
         </div>
       </div>
-      <Button
-        label="Buy Now"
-        variant="custom"
+      <button
+        onClick={handleBuyNowClick}
         className="bg-orange-500 hover:font-bold hover:translate-y-[0px] text-white w-full p-2 rounded-b-md rounded-t-none"
-      />
+      >
+        Buy Now
+      </button>
     </Card>
   );
 };

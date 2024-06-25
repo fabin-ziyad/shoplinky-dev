@@ -43,7 +43,7 @@ function ProfileCard({ data, loading }: any) {
           {convertToFirstLetterUppercase(data?.name) || "NA"}
         </h1>
         <p className="text-gray-500 text-lg max-w-sm ">
-          Talks about #fashion, #youtube, #socialmedia, and #lifestyle
+          Talks about #skincare, #health and #wellbeing
         </p>
       </div>
     </div>

@@ -19,10 +19,11 @@ const StoreLayout = ({
 
   return (
     <div className="w-full flex justify-center">
-      <div className="xl:w-[70%] lg:w-[70%] md:w-[80%] w-full">
+      {/* Reduce the maximum width for all breakpoints */}
+      <div className="xl:w-[60%] lg:w-[60%] md:w-[70%] sm:w-[80%] w-full">
         <div className="flex flex-col w-full bg-white items-center">
           {switchNavbar ? (
-            <div className="fixed top-0 left-0 right-0 z-50 bg-white shadow">
+            <div className="w-full bg-white shadow">
               <div className="w-full flex items-center justify-between py-2 px-4 border-b border-gray-200">
                 <div className="flex items-center gap-x-2 w-full justify-start md:justify-between">
                   {/* Make the arrow mark slightly bigger for large screens */}
@@ -56,12 +57,8 @@ const StoreLayout = ({
               data={storeData}
             />
           )}
-          {/* Reduce the padding and margin to minimize the gap */}
-          <div
-            className={`w-full  sm:px-2 lg:px-3 pt-0 mt-[${
-              switchNavbar ? "30px" : "10px"
-            }] md:mt-[${switchNavbar ? "30px" : "10px"}] `}
-          >
+          {/* Ensure consistent padding and margin */}
+          <div className="w-full px-4 pt-4">
             {children}
           </div>
           <Footer data={storeData} />
